@@ -19,10 +19,10 @@
         description = "Development environment for OpenTofu-managed infrastructure or modules";
       };
 
-      # terraform = {
-      #   path = ./terraform;
-      #   description = "Development environment for Terraform-managed infrastructure or modules";
-      # };
+      terraform = {
+        path = ./terraform;
+        description = "Development environment for Terraform-managed infrastructure or modules";
+      };
 
     };
   };
