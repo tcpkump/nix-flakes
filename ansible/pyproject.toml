@@ -1,0 +1,78 @@
+# pyproject.toml using standard PEP 621 metadata readable by uv
+
+[project]
+name = "ansible-example"
+version = "0.1.0"
+description = "Repository for developing example Ansible roles and playbooks"
+authors = [
+    { name = "Garrett Leber", email = "garrett@leberra.com" }
+]
+license = { text = "MIT" }
+# Add other standard fields if needed, e.g.:
+# readme = "README.md"
+# repository = "https://github.com/your-username/ansible-example"
+
+# Remember to update python version in flake.nix as well
+requires-python = ">=3.11"
+dependencies = [
+    # Use the modern 'ansible' package which includes ansible-core and community collections.
+    "ansible>=11.5.0,<12.0.0",
+]
+
+# Development-only dependencies, linters, testing tools etc.
+# Define optional dependency groups here. Install with `uv pip install -e .[dev]`
+[project.optional-dependencies]
+dev = [
+    "ansible-lint>=25.2.1,<26.0.0", # Linter for Ansible playbooks/roles
+    "molecule>=6.0,<7.0",           # Testing framework for Ansible roles
+    "yamllint>=1.35.1,<2.0.0",      # Linter for YAML files
+    # --- Molecule Drivers ---
+    # Add the specific molecule drivers you intend to use.
+    # Find available drivers on PyPI (search for 'molecule-').
+    # These are now separate packages.
+    "molecule-docker>=2.1.0,<3.0.0", # Example: If using Docker for testing
+    # "molecule-podman>=2.0.0,<3.0.0", # Example: If using Podman for testing
+    # "molecule-vagrant>=1.2.0,<2.0.0", # Example: If using Vagrant for testing
+]
+
+# [build-system]
+# requires = ["poetry-core>=2.0.0,<3.0.0"]
+# build-backend = "poetry.core.masonry.api"
+
+
+# --- Tool Configurations ---
+
+[tool.ansible-lint]
+# See ansible-lint documentation for all options:
+# https://ansible-lint.readthedocs.io/en/latest/configuring/
+# Example: Skip checking YAML files with ansible-lint if you prefer yamllint
+# skip_list = ['yaml']
+# Example: Exclude certain rules globally
+# skip_list = ['fqcn[action-core]'] # If you don't want to enforce FQCN for core modules
+# Example: Enforce specific rules
+# enable_list = ['no-log-password']
+verbosity = 1
+exclude_paths = [
+    ".venv/",
+    ".tox/",
+    ".git/",
+    "docs/",
+    "build/",
+    "dist/",
+]
+
+[tool.yamllint]
+# See yamllint documentation for all options:
+# https://yamllint.readthedocs.io/en/stable/configuration.html
+extends = "default"
+ignore = """
+.venv/
+.git/
+*.egg-info/
+dist/
+build/
+"""
+[tool.yamllint.rules]
+line-length = { max = 120, level = "warning" }
+document-start = { present = true, level = "warning" }
+indentation = { spaces = "consistent", indent-sequences = true }
