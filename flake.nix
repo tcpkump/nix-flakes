@@ -9,6 +9,11 @@
         description = "Nix flake for Ansible role and playbook development";
       };
 
+      kubernetes = {
+        path = ./kubernetes;
+        description = "Development environment for kubernetes-managed infrastructure or modules";
+      };
+
       # opentofu = {
       #   path = ./opentofu;
       #   description = "Development environment for OpenTofu-managed infrastructure or modules";
