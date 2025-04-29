@@ -14,10 +14,10 @@
         description = "Development environment for kubernetes-managed infrastructure or modules";
       };
 
-      # opentofu = {
-      #   path = ./opentofu;
-      #   description = "Development environment for OpenTofu-managed infrastructure or modules";
-      # };
+      opentofu = {
+        path = ./opentofu;
+        description = "Development environment for OpenTofu-managed infrastructure or modules";
+      };
 
       # terraform = {
       #   path = ./terraform;
